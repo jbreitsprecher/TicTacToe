@@ -1,5 +1,18 @@
 #include <stdio.h>
 
+/*Initializing to 'e' for "empty"*/
+char TL = 'e';    //top left
+char TC = 'e';    //top center
+char TR = 'e';    //top right
+
+char ML = 'e';    //middle left
+char MC = 'e';    //middle center
+char MR = 'e';    //middle right
+
+char BL = 'e';    //bottom left
+char BC = 'e';    //bottom center
+char BR = 'e';    //bottome right
+
 void main()
 {
     char P1Name[] = "placeholder";
@@ -16,4 +29,6 @@ void main()
     printf("\n");
 
     //printf("%s", P2Name);
+
+    PrintBoard();
 }
