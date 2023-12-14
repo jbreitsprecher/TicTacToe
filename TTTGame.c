@@ -1,17 +1,19 @@
 #include <stdio.h>
 
-/*Initializing to 'e' for "empty"*/
-char TL = 'e';    //top left
-char TC = 'e';    //top center
-char TR = 'e';    //top right
+/*Initializing to '_' for "empty"*/
+char TL = '_';    //top left
+char TC = '_';    //top center
+char TR = '_';    //top right
 
-char ML = 'e';    //middle left
-char MC = 'e';    //middle center
-char MR = 'e';    //middle right
+char ML = '_';    //middle left
+char MC = '_';    //middle center
+char MR = '_';    //middle right
 
-char BL = 'e';    //bottom left
-char BC = 'e';    //bottom center
-char BR = 'e';    //bottome right
+char BL = '_';    //bottom left
+char BC = '_';    //bottom center
+char BR = '_';    //bottome right
+
+void PrintBoard();
 
 void main()
 {
@@ -31,4 +33,11 @@ void main()
     //printf("%s", P2Name);
 
     PrintBoard();
+}
+
+void PrintBoard()
+{
+    printf("%c %c %c\n",TL,TC,TR);
+    printf("%c %c %c\n",ML,MC,MR);
+    printf("%c %c %c\n",BL,BC,BR);
 }
