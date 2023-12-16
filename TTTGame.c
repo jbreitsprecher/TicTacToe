@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 /*Initializing to '_' for "empty"*/
 char TL = '_';    //top left
@@ -64,7 +65,8 @@ void main()
 
             scanf("%s", &spotPick);
 
-            if( spotPick == "TL" && TL == '_' )
+            //if( spotPick == "TL" && TL == '_' )
+            if( strcmp(spotPick, "TL") && TL == '_' )
             {
                 if( WhosTurn == 1 )
                 {
