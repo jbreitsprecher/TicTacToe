@@ -15,7 +15,8 @@ char BL = '_';    //bottom left
 char BC = '_';    //bottom center
 char BR = '_';    //bottome right
 
-int not = 0;      //number of terms
+int not = 0;      //number of turns
+int Winner = 0;
 
 bool Draw = false;//if there's a draw
 
@@ -51,8 +52,8 @@ void main()
         //if the game is happening and not over
         if( !GameOver() && Draw == false )
         {
+            //printf("PickedSpot is: %s\n", spotPick);
 
-            printf("PickedSpot is: %s\n", spotPick);
             if( WhosTurn == 1 )
             {
                 printf("Player 1, please enter your spot:\n");
@@ -84,7 +85,7 @@ void main()
                 }
             }
 
-            else if( spotPick == "TC" && '_' )
+            else if( strcmp(spotPick, "TC") == 0 && TC == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -99,7 +100,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "TR" && '_' )
+
+            else if( strcmp(spotPick, "TR") == 0 && TR == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -114,7 +116,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "ML" && '_' )
+
+            else if( strcmp(spotPick, "ML") == 0 && ML == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -129,7 +132,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "MC" && '_' )
+
+            else if( strcmp(spotPick, "MC") == 0 && MC == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -144,7 +148,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "MR" && '_' )
+
+            else if( strcmp(spotPick, "MR") == 0 && MR == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -159,7 +164,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "BL" && '_' )
+
+            else if( strcmp(spotPick, "BL") == 0 && BL == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -174,7 +180,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else if(spotPick == "BC" && '_' )
+
+            else if( strcmp(spotPick, "BC") == 0 && BC == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -189,7 +196,8 @@ void main()
                     WhosTurn = 1;
                 }
             }
-            else //if(spotPick == "BR" && '_' )
+
+            else if( strcmp(spotPick, "BR") == 0 && BR == '_' )
             {
                 if(WhosTurn == 1)
                 {
@@ -205,35 +213,38 @@ void main()
                 }
             }
 
-            PrintBoard();
-            GameOver();
-        }
-
-        //the game ended in a draw
-        else if(Draw == true)
-        {
-            printf("The game ended as a draw!");
-            PrintBoard();
-        }
-
-        //otherwise there was a winner
-        else
-        {
-            if (WhosTurn == 1)
-            {
-                printf("Player 1 wins!");
-                PrintBoard();
-            }
             else
             {
-                printf("Player 2 wins!");
-                PrintBoard();
+                printf("\nDone made an error amigo, try again!\n");
             }
+
+            PrintBoard();
+            GameOver();
+        }        
+    } while( !GameOver() && Draw == false );
+    
+    if(Draw == true)
+    {
+        printf("The game ended as a draw!");
+        PrintBoard();
+    }
+
+    else if( GameOver() )
+    {
+        if(Winner == 1)
+        {
+            printf("%s Won!\n\n", P1Name );
+            //PrintBoard();
         }
 
+        else
+        {
+            printf("%s Won!\n\n", P2Name );
+            //PrintBoard();
+        }
 
-
-    } while( !GameOver() && Draw == false );
+        //PrintBoard();
+    }
 }
 
 void PrintBoard()
@@ -256,56 +267,135 @@ bool GameOver()
         // checks top row win
         if( TL == TC && TL == TR && TC == TR && TR != '_' )
         {
+            if( TR == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
+
             return true;
         }
 
         //checks middle row win
         else if( ML == MC && ML == MR && MC == MR && MR != '_' )
         {
+            if( ML == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
         //checks bottom row win
         else if( BL == BC && BL == BR && BC == BR && BR != '_' )
         {
+            if( BL == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
         //checks left column win
         else if( TL == ML && BL == TL && ML == BL && TL != '_' )
         {
+            if( TL == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
         //checks middle column win
         else if( TC == MC && BC == TC && MC == BC && TC != '_' )
         {
+            if( TC == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
+
             return true;
         }
 
         //checks right column win
         else if( TR == MR && BR == TR && MR == BR && TR != '_' )
         {
+            if( TR == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
         //checks diagonal top left to bottom right win
         else if( TL == MC && BR == TL && MC == BR && TL != '_' )
         {
+            if( TL == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
         //checks diagonal top right to bottom left win
         else if( TR == MC && BL == TR && MC == BL && TR != '_' )
         {
+            if( TR == 'X' )
+            {
+                Winner = 1;
+            }
+
+            else
+            {
+                Winner = 2;
+            }
             return true;
         }
 
-        //checks for full board/draw
+        /*//checks for full board/draw
         else
         {
             Draw = true;
             return true;
+        }*/
+
+        else
+        {
+            return false;
         }
     }
     return false;
