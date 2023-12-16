@@ -16,6 +16,8 @@ char BR = '_';    //bottome right
 
 int not = 0;      //number of terms
 
+bool Draw = false;//if there's a draw
+
 void PrintBoard();
 bool GameOver();
 
@@ -23,6 +25,9 @@ void main()
 {
     char P1Name[] = "placeholder";
     char P2Name[] = "placeholder";
+    char spotPick[] = "placeholder";
+
+    int WhosTurn = 1;
 
     printf("\nLet's Play Tic-Tac-Toe!\n\n");
 
@@ -40,10 +45,191 @@ void main()
 
     printf("To play, please input the spot you would like to play. (TMB;LCR)");
     
-    while(!GameOver())
+    do
     {
+        //if the game is happening and not over
+        if( !GameOver() && Draw == false )
+        {
+            if( WhosTurn == 1 )
+            {
+                printf("Player 1, please enter your spot:");
+            }
 
-    }
+            else
+            {
+                printf("Player 2, please enter your spot:");
+            }
+
+            scanf("%s", &spotPick);
+
+            if( spotPick == "TL" && TL == '_' )
+            {
+                if( WhosTurn == 1 )
+                {
+                    TL = 'X';
+                    not++;
+                    WhosTurn = 2;
+                    
+                }
+
+                else
+                {
+                    TL = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+
+            else if( spotPick == "TC" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    TC = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    TC = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "TR" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    TR = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    TR = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "ML" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    ML = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    ML = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "MC" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    MC = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    MC = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "MR" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    MR = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    MR = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "BL" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    BL = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    BL = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else if(spotPick == "BC" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    BC = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    BC = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+            else //if(spotPick == "BR" && '_' )
+            {
+                if(WhosTurn == 1)
+                {
+                    BR = 'X';
+                    not++;
+                    WhosTurn = 2;
+                }
+                else
+                {
+                    BR = 'O';
+                    not++;
+                    WhosTurn = 1;
+                }
+            }
+
+            PrintBoard();
+            GameOver();
+        }
+
+        //the game ended in a draw
+        else if(Draw == true)
+        {
+            printf("The game ended as a draw!");
+            PrintBoard();
+        }
+
+        //otherwise there was a winner
+        else
+        {
+            if (WhosTurn == 1)
+            {
+                printf("Player 1 wins!");
+                PrintBoard();
+            }
+            else
+            {
+                printf("Player 2 wins!");
+                PrintBoard();
+            }
+        }
+
+
+
+    } while( !GameOver() && Draw == false );
 }
 
 void PrintBoard()
@@ -60,6 +246,7 @@ bool GameOver()
     {
         return false;
     }
+
     else
     {
         // checks top row win
@@ -67,15 +254,55 @@ bool GameOver()
         {
             return true;
         }
+
+        //checks middle row win
         else if( ML == MC && ML == MR && MC == MR && MR != '_' )
         {
             return true;
         }
+
+        //checks bottom row win
         else if( BL == BC && BL == BR && BC == BR && BR != '_' )
         {
             return true;
         }
+
+        //checks left column win
         else if( TL == ML && BL == TL && ML == BL && TL != '_' )
+        {
+            return true;
+        }
+
+        //checks middle column win
+        else if( TC == MC && BC == TC && MC == BC && TC != '_' )
+        {
+            return true;
+        }
+
+        //checks right column win
+        else if( TR == MR && BR == TR && MR == BR && TR != '_' )
+        {
+            return true;
+        }
+
+        //checks diagonal top left to bottom right win
+        else if( TL == MC && BR == TL && MC == BR && TL != '_' )
+        {
+            return true;
+        }
+
+        //checks diagonal top right to bottom left win
+        else if( TR == MC && BL == TR && MC == BL && TR != '_' )
+        {
+            return true;
+        }
+
+        //checks for full board/draw
+        else
+        {
+            Draw = true;
+            return true;
+        }
     }
     return false;
 }
