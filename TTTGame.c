@@ -66,7 +66,7 @@ void main()
             scanf("%s", &spotPick);
 
             //if( spotPick == "TL" && TL == '_' )
-            if( strcmp(spotPick, "TL") && TL == '_' )
+            if( strcmp(spotPick, "TL") == 0 && TL == '_' )
             {
                 if( WhosTurn == 1 )
                 {
