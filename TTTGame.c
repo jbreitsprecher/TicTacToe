@@ -226,7 +226,7 @@ void main()
     if(Draw == true)
     {
         printf("The game ended as a draw!");
-        PrintBoard();
+        //PrintBoard();
     }
 
     else if( GameOver() )
@@ -234,16 +234,12 @@ void main()
         if(Winner == 1)
         {
             printf("%s Won!\n\n", P1Name );
-            //PrintBoard();
         }
 
         else
         {
             printf("%s Won!\n\n", P2Name );
-            //PrintBoard();
         }
-
-        //PrintBoard();
     }
 }
 
@@ -256,7 +252,7 @@ void PrintBoard()
 
 bool GameOver()
 {
-    //Checking for wins
+    //cant win in less than 3 moves so why waste time checking
     if(not < 3)
     {
         return false;
@@ -385,18 +381,20 @@ bool GameOver()
             }
             return true;
         }
-
-        /*//checks for full board/draw
-        else
+        
+        //checks for draw by checking not
+        else if( not >= 9)
         {
             Draw = true;
             return true;
-        }*/
+        }
 
         else
         {
             return false;
         }
     }
+
     return false;
+
 }
