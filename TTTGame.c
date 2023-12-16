@@ -43,21 +43,23 @@ void main()
 
     PrintBoard();
 
-    printf("To play, please input the spot you would like to play. (TMB;LCR)");
+    printf("To play, please input the spot you would like to play. (TMB;LCR)\n");
     
     do
     {
         //if the game is happening and not over
         if( !GameOver() && Draw == false )
         {
+
+            printf("PickedSpot is: %s\n", spotPick);
             if( WhosTurn == 1 )
             {
-                printf("Player 1, please enter your spot:");
+                printf("Player 1, please enter your spot:\n");
             }
 
             else
             {
-                printf("Player 2, please enter your spot:");
+                printf("Player 2, please enter your spot:\n");
             }
 
             scanf("%s", &spotPick);
